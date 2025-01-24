@@ -11,7 +11,7 @@ enum AppTheme {
 }
 
 final appthemedata = {
-  AppTheme.light: ThemeData(
+  AppTheme.light: ThemeData( 
     
     brightness: Brightness.light,
     appBarTheme:const AppBarTheme(
