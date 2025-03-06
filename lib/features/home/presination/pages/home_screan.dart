@@ -3,6 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trendify/core/Theming/colors.dart';
 import 'package:trendify/core/Theming/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../widgets/appbar_home.dart';
+import '../widgets/banners.dart';
+import '../widgets/categrios.dart';
+import '../widgets/item_categries.dart';
+import '../widgets/list_categries_item.dart';
+import '../widgets/product_list.dart';
 class HomeScrean extends StatelessWidget {
   const HomeScrean({super.key});
 
@@ -11,37 +18,30 @@ class HomeScrean extends StatelessWidget {
     return  SafeArea(
       child: Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          const SizedBox(height: 50,),
-          Row(
-            children: [
-              SizedBox(
-                width: 300.w,
-                height: 50.h,
-                child: TextFormField(
-                  cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        filled: true,
-                        // contentPadding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
-                        fillColor: Colors.grey[250],
-                        suffixIcon: const Icon(Icons.search,color: Colorsmanager.blackcolor,),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.r),borderSide: const BorderSide(color: Colors.transparent)),
-                        hintText: 'Search',
-                        hintStyle: Textstyles.font12greybold,
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(25.r),borderSide: const BorderSide(color: Colors.transparent)),
-                )),
-              ),
-              const Spacer(),
-              Container(
-                padding:  EdgeInsets.all(7.h),
-                // height: 40.h,
-                // width: 45,
-                decoration: const BoxDecoration(color:   Color.fromARGB(100, 158, 158, 158),shape: BoxShape.circle),
-                child: SvgPicture.asset('assets/icons/notification.svg',height:  35.h,))
-            ],
-          )
-        ],),
+        padding: const EdgeInsets.all(10.0),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(children: [
+                const SizedBox(height: 10,),
+               const AppbarHome(),
+                SizedBox(height: 20.h,),
+               Row(children: [
+                Text('Offers',style: Textstyles.font20blackbold,),
+                const Spacer(),
+                Text('See All',style: Textstyles.font12greybold.copyWith(color: Colorsmanager.greencolor),)
+               ],),
+               const Banners(),
+                 SizedBox(height: 10.h,),
+               const Categrios(),
+
+              ],),
+            ),
+            SliverToBoxAdapter(
+              child: ProductList(),
+            )
+          ],
+        ),
       ),
       ),
     );
