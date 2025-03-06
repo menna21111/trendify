@@ -13,7 +13,13 @@ class ShopVibesApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => const MaterialApp(
+      builder: (context, child) =>  MaterialApp( 
+          builder: (context, child) {
+            return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.linear(1.0)),
+                child: child!);
+          },
         debugShowCheckedModeBanner: false,
         home: HomeScrean(),
       ),
